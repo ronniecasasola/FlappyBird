@@ -1,6 +1,5 @@
 package com.casasola.gameobjects;
 
-
 import com.badlogic.gdx.math.Vector2;
 
 public class Scrollable {
@@ -33,6 +32,10 @@ public class Scrollable {
     public void reset(float newX) {
         position.x = newX;
         isScrolledLeft = false;
+    }
+
+    public void stop() {
+        velocity.x = 0;
     }
 
     // Getters for instance variables
