@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Scrollable {
 
+
     // Protected is similar to private, but allows inheritance by subclasses.
     protected Vector2 position;
     protected Vector2 velocity;

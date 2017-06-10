@@ -1,0 +1,1 @@
+include 'desktop', 'android', 'ios', 'html', 'core', ':tween-engine-api', ':tween-engine-api-sources'

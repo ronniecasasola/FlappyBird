@@ -12,7 +12,9 @@ public class Bird {
 
     private float rotation;
     private int width;
-    private int height;
+    private float height;
+
+    private float originalY;
 
     private boolean isAlive;
 
@@ -21,6 +23,7 @@ public class Bird {
     public Bird(float x, float y, int width, int height) {
         this.width = width;
         this.height = height;
+        this.originalY = y;
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 460);
@@ -68,6 +71,10 @@ public class Bird {
 
     }
 
+    public void updateReady(float runTime) {
+        position.y = 2 * (float) Math.sin(7 * runTime) + originalY;
+    }
+
     public boolean isFalling() {
         return velocity.y > 110;
     }
@@ -90,6 +97,16 @@ public class Bird {
 
     public void decelerate() {
         acceleration.y = 0;
+    }
+
+    public void onRestart(int y) {
+        rotation = 0;
+        position.y = y;
+        velocity.x = 0;
+        velocity.y = 0;
+        acceleration.x = 0;
+        acceleration.y = 460;
+        isAlive = true;
     }
 
     public float getX() {
@@ -120,13 +137,4 @@ public class Bird {
         return isAlive;
     }
 
-    public void onRestart(int y) {
-        rotation = 0;
-        position.y = y;
-        velocity.x = 0;
-        velocity.y = 0;
-        acceleration.x = 0;
-        acceleration.y = 460;
-        isAlive = true;
-    }
 }

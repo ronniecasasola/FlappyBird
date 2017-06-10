@@ -1,21 +1,19 @@
 package com.casasola.gameobjects;
+
 import com.casasola.gameworld.GameWorld;
 import com.casasola.zbhelpers.AssetLoader;
 
 public class ScrollHandler {
 
-    private final GameWorld gameWorld;
     private Grass frontGrass, backGrass;
     private Pipe pipe1, pipe2, pipe3;
     public static final int SCROLL_SPEED = -59;
     public static final int PIPE_GAP = 49;
 
-    private void addScore(int increment) {
-        gameWorld.addScore(increment);
-    }
+    private GameWorld gameWorld;
 
-    public ScrollHandler(GameWorld GameWorld, float yPos) {
-        this.gameWorld = GameWorld;
+    public ScrollHandler(GameWorld gameWorld, float yPos) {
+        this.gameWorld = gameWorld;
         frontGrass = new Grass(0, yPos, 143, 11, SCROLL_SPEED);
         backGrass = new Grass(frontGrass.getTailX(), yPos, 143, 11,
                 SCROLL_SPEED);
@@ -25,6 +23,22 @@ public class ScrollHandler {
                 yPos);
         pipe3 = new Pipe(pipe2.getTailX() + PIPE_GAP, 0, 22, 60, SCROLL_SPEED,
                 yPos);
+    }
+
+    public void updateReady(float delta) {
+
+        frontGrass.update(delta);
+        backGrass.update(delta);
+
+        // Same with grass
+        if (frontGrass.isScrolledLeft()) {
+            frontGrass.reset(backGrass.getTailX());
+
+        } else if (backGrass.isScrolledLeft()) {
+            backGrass.reset(frontGrass.getTailX());
+
+        }
+
     }
 
     public void update(float delta) {
@@ -65,6 +79,7 @@ public class ScrollHandler {
     }
 
     public boolean collides(Bird bird) {
+
         if (!pipe1.isScored()
                 && pipe1.getX() + (pipe1.getWidth() / 2) < bird.getX()
                 + bird.getWidth()) {
@@ -89,6 +104,10 @@ public class ScrollHandler {
 
         return (pipe1.collides(bird) || pipe2.collides(bird) || pipe3
                 .collides(bird));
+    }
+
+    private void addScore(int increment) {
+        gameWorld.addScore(increment);
     }
 
     public Grass getFrontGrass() {

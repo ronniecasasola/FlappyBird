@@ -6,6 +6,6 @@ eclipse.project {
     name = appName + "-core"
 }
 dependencies {
-    compile files('build/libs/tween-engine-api-sources.jar')
-    compile files('build/libs/tween-engine-api.jar')
+    compile project(':tween-engine-api')
+    compile project(':tween-engine-api-sources')
 }

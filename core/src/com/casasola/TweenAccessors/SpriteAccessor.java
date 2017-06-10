@@ -1,9 +1,8 @@
 package com.casasola.TweenAccessors;
 
+import aurelienribon.tweenengine.TweenAccessor;
 
-        import aurelienribon.tweenengine.TweenAccessor;
-
-        import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class SpriteAccessor implements TweenAccessor<Sprite> {
 

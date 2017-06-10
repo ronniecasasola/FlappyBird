@@ -3,6 +3,7 @@ package com.casasola.ui;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.casasola.zbhelpers.AssetLoader;
 
 public class SimpleButton {
 
@@ -55,6 +56,7 @@ public class SimpleButton {
         // It only counts as a touchUp if the button is in a pressed state.
         if (bounds.contains(screenX, screenY) && isPressed) {
             isPressed = false;
+            AssetLoader.flap.play();
             return true;
         }
 

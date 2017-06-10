@@ -1,18 +1,15 @@
 package com.casasola.zombiebird;
 
-
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.casasola.screens.GameScreen;
+import com.casasola.screens.SplashScreen;
 import com.casasola.zbhelpers.AssetLoader;
 
-public class ZBGame extends Game  {
+public class ZBGame extends Game {
 
     @Override
-    public void create(){
-        Gdx.app.log("ZBGame", "created");
+    public void create() {
         AssetLoader.load();
-        setScreen(new GameScreen());
+        setScreen(new SplashScreen(this));
     }
 
     @Override
@@ -20,4 +17,5 @@ public class ZBGame extends Game  {
         super.dispose();
         AssetLoader.dispose();
     }
+
 }
